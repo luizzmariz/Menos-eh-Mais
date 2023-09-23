@@ -5,23 +5,35 @@ using UnityEngine;
 public class PerlinNoise : MonoBehaviour
 {
     [Header("Texture")]
-    public int width = 256;
-    public int height = 256; 
+    private int width = 256;
+    private int height = 256; 
 
     [Header("Perlin Noise")]
-    public float scale = 20f;
-    public float offsetX = 100f;
-    public float offsetY = 100f;
+    private float scale = 20f;
+    private float offsetX = 100f;
+    private float offsetZ = 100f;
+    public Vector2 tileCoord;
 
     private Renderer rend;
 
     void Start()
     {
-        rend = GetComponent<Renderer>();   
+        
     }
 
     void Update()
     {
+        
+    }
+
+    public void GenerateTerrain(float offsetX, float offsetZ, float scale, Vector2 tilePos)
+    {
+        rend = GetComponent<Renderer>();   
+
+        tileCoord = tilePos;
+        this.offsetX = offsetX + tileCoord.x * scale;
+        this.offsetZ = offsetZ + tileCoord.y * scale;
+        
         rend.material.mainTexture = GenerateTexture();
     }
 
@@ -43,8 +55,16 @@ public class PerlinNoise : MonoBehaviour
 
     Color CalculateColor(int x, int y)
     {
-        float xCoord = (float)x / width * scale + offsetX;
-        float yCoord = (float)y / height * scale + offsetY;
+        float xCoord = (float)x / (width-1) * scale + offsetX;
+        float yCoord = (float)y / (height-1) * scale + offsetZ;
+        if(x == 0 && y == 0)
+        {
+            Debug.Log("Ponto 0,0 é " + xCoord + " " + yCoord);
+        }
+        else if(x == 255 && y == 255)
+        {
+            Debug.Log("Ponto 255,255 é " + xCoord + " " + yCoord);
+        }
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
 

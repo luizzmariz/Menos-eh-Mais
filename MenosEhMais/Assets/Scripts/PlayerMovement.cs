@@ -34,27 +34,43 @@ public class PlayerMovement : MonoBehaviour
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
-        if (input == new Vector3(0,0,1)) {
+        if (input == new Vector3(0,0,1)) 
+        {
             input = new Vector3(1,0,1);
-        } else if (input == new Vector3(1,0,1)) {
+        } 
+        else if (input == new Vector3(1,0,1)) 
+        {
             input = new Vector3(1,0,0);
-        } else if (input == new Vector3(1,0,0)) {
+        } 
+        else if (input == new Vector3(1,0,0)) 
+        {
             input = new Vector3(1,0,-1);
-        } else if (input == new Vector3(-1,0,1)) {
+        } 
+        else if (input == new Vector3(-1,0,1)) 
+        {
             input = new Vector3(0,0,1);
-        } else if (input == new Vector3(1,0,-1)) {
+        } 
+        else if (input == new Vector3(1,0,-1)) 
+        {
             input = new Vector3(0,0,-1);
-        } else if (input == new Vector3(0,0,-1)) {
+        } 
+        else if (input == new Vector3(0,0,-1)) 
+        {
             input = new Vector3(-1,0,-1);
-        } else if (input == new Vector3(-1,0,-1)) {
+        } 
+        else if (input == new Vector3(-1,0,-1)) 
+        {
             input = new Vector3(-1,0,0);
-        } else if (input == new Vector3(-1,0,0)) {
+        } 
+        else if (input == new Vector3(-1,0,0)) 
+        {
             input = new Vector3(-1,0,1);
         }
     }   
     
     void MovePlayer()
     {
-        rb.AddForce(input * moveSpeed, ForceMode.Acceleration);
+        //rb.AddForce(input * moveSpeed, ForceMode.Acceleration);
+        rb.velocity = input * moveSpeed;
     }
 }
