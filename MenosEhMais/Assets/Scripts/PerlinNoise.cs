@@ -57,14 +57,14 @@ public class PerlinNoise : MonoBehaviour
     {
         float xCoord = (float)x / (width-1) * scale + offsetX;
         float yCoord = (float)y / (height-1) * scale + offsetZ;
-        if(x == 0 && y == 0)
+        /*if(x == 0 && y == 0)
         {
             Debug.Log("Ponto 0,0 é " + xCoord + " " + yCoord);
         }
         else if(x == 255 && y == 255)
         {
             Debug.Log("Ponto 255,255 é " + xCoord + " " + yCoord);
-        }
+        }*/
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
 
