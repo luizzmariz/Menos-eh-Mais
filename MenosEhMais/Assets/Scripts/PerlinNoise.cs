@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class PerlinNoise : MonoBehaviour
 {
+    [Header("Texture")]
     public int width = 256;
     public int height = 256; 
 
+    [Header("Perlin Noise")]
     public float scale = 20f;
     public float offsetX = 100f;
     public float offsetY = 100f;
 
-    public Renderer rend;
+    private Renderer rend;
 
     void Start()
     {
-        rend = GetComponent<Renderer>();
-        rend.material.mainTexture = GenerateTexture();
+        rend = GetComponent<Renderer>();   
     }
 
     void Update()
     {
-        
+        rend.material.mainTexture = GenerateTexture();
     }
 
     Texture2D GenerateTexture()
