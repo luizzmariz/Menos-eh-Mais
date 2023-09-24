@@ -10,9 +10,11 @@ public class FMODEvents : MonoBehaviour
 
     [field: SerializeField] public EventReference ambience {get; private set; }
 
-    [field: Header("HEY SFX")]
+    [field: Header("SFX")]
 
     [field: SerializeField] public EventReference PoliceCall {get; private set; }
+
+    [field: SerializeField] public EventReference PoliceStep {get; private set; }
 
     public static FMODEvents instance {get; private set; }
 
