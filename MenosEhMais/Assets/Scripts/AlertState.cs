@@ -18,4 +18,9 @@ public class Alert : BaseState {
             stateMachine.ChangeState(sm.chaseState);
         }
     }
+
+    public override void UpdatePhysics() {
+        base.UpdatePhysics();
+        sm.rigidBody.velocity = new Vector3(0,0,0);
+    }
 }

@@ -14,7 +14,7 @@ public class Chase : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        if (Vector3.Distance(sm.rigidBody.transform.position, sm.player.position) <= 5) {
+        if (Vector3.Distance(sm.rigidBody.transform.position, sm.player.position) >= 5) {
             stateMachine.ChangeState(sm.returnState);
         }
     }
@@ -23,7 +23,6 @@ public class Chase : BaseState {
         base.UpdatePhysics();
         Vector3 currentPos = new Vector3(sm.rigidBody.transform.position.x, 0, sm.rigidBody.transform.position.z);
         Vector3 playerPos = new Vector3(sm.player.position.x, 0, sm.player.position.z);
-        Vector3 direction = playerPos - currentPos;
-        sm.rigidBody.velocity = sm.speed * direction;
+        sm.rigidBody.velocity = sm.speed * (playerPos - currentPos).normalized;
     }
 }
