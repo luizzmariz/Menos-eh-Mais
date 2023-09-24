@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Relaxed : BaseState {
     private SecuritySM sm;
+    
     public Relaxed(SecuritySM stateMachine) : base("Relaxed", stateMachine) {
         sm = (SecuritySM)stateMachine;
     }

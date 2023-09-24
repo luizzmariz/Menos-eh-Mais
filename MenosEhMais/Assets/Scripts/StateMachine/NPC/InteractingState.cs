@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alert : BaseState {
-    private SecuritySM sm;
-    public Alert(SecuritySM stateMachine) : base("Alert", stateMachine) {
-        sm = (SecuritySM)stateMachine;
+public class Interacting : BaseState {
+    private NPCSM sm;
+    
+    public Interacting(NPCSM stateMachine) : base("Interacting", stateMachine) {
+        sm = (NPCSM)stateMachine;
     }
 
     public override void Enter() {
@@ -14,8 +15,8 @@ public class Alert : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        if (Vector3.Distance(sm.rigidBody.transform.position, sm.player.position) <= 5) {
-            stateMachine.ChangeState(sm.chaseState);
+        if (!sm.playerInteracting) {
+            stateMachine.ChangeState(sm.idleState);
         }
     }
 
