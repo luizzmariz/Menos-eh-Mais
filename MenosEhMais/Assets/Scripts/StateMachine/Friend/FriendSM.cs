@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCSM : StateMachine {
+public class FriendSM : StateMachine {
     [HideInInspector]
-    public Idle idleState;
-    [HideInInspector]
-    public Moving movingState;
-    [HideInInspector]
-    public Interacting interactingState;
+    public Roaming RoamingState;
 
     public Rigidbody rigidBody;
     public Vector3 direction;
-    public bool playerInteracting = false;
     public float speed = 0.5f;
 
     private void Awake() {
-        idleState = new Idle(this);
-        movingState = new Moving(this);
-        interactingState = new Interacting(this);
+        RoamingState = new Roaming(this);
     }
 
     protected override BaseState GetInitialState() {
-        playerInteracting = false;
-        return idleState;
+        direction = new Vector3(Random.Range(0,10), 0, Random.Range(0,10)).normalized;
+        return RoamingState;
     }
     /*
     private void OnGUI() {
