@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Return : BaseState {
     private SecuritySM sm;
+    
     public Return(SecuritySM stateMachine) : base("Return", stateMachine) {
         sm = (SecuritySM)stateMachine;
     }

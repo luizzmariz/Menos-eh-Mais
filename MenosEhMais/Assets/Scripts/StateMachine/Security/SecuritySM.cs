@@ -15,7 +15,7 @@ public class SecuritySM : StateMachine {
     public Rigidbody rigidBody;
     public Transform player;
     public Vector3 initialPos;
-    public float speed = 4f;
+    public float speed = 1f;
 
     private void Awake() {
         relaxedState = new Relaxed(this);

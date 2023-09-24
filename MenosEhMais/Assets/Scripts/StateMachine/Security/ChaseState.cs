@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Chase : BaseState {
     private SecuritySM sm;
+    
     public Chase(SecuritySM stateMachine) : base("Chase", stateMachine) {
         sm = (SecuritySM)stateMachine;
     }
