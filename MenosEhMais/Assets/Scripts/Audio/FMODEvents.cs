@@ -6,6 +6,10 @@ using FMODUnity;
 public class FMODEvents : MonoBehaviour
 {
 
+    [field: Header("Ambience")]
+
+    [field: SerializeField] public EventReference ambience {get; private set; }
+
     [field: Header("HEY SFX")]
 
     [field: SerializeField] public EventReference PoliceCall {get; private set; }

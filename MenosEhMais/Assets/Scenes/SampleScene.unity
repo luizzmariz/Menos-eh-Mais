@@ -1070,3 +1070,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933671740c45491418991393125a8b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ambience>k__BackingField:
+    Guid:
+      Data1: -1255763585
+      Data2: 1135073959
+      Data3: 71267740
+      Data4: -1255180673
+    Path: event:/Trilha/Trilha
+  <PoliceCall>k__BackingField:
+    Guid:
+      Data1: 667700606
+      Data2: 1097241868
+      Data3: 1418196394
+      Data4: 1934450480
+    Path: event:/SDX/HEY
