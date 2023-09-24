@@ -13,6 +13,7 @@ public class SecuritySM : StateMachine {
     [HideInInspector]
     public Alert alertState;
 
+    public StudioEventEmitter emitter;
     public Rigidbody rigidBody;
     public Transform player;
     public Vector3 initialPos;
@@ -23,6 +24,7 @@ public class SecuritySM : StateMachine {
         chaseState = new Chase(this);
         returnState = new Return(this);
         alertState = new Alert(this);
+        emitter = GetComponent<StudioEventEmitter>();
     }
 
     protected override BaseState GetInitialState() {

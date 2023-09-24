@@ -5,7 +5,8 @@ using UnityEngine;
 public class Chase : BaseState {
     private SecuritySM sm;
 
-    [SerializeField]
+    
+
     
     public Chase(SecuritySM stateMachine) : base("Chase", stateMachine) {
         sm = (SecuritySM)stateMachine;
@@ -14,6 +15,8 @@ public class Chase : BaseState {
     public override void Enter() {
         base.Enter();
         AudioManager.instance.PlayOneShot(FMODEvents.instance.PoliceCall, sm.transform.position);
+        
+       
     }
 
     public override void UpdateLogic() {
@@ -21,6 +24,9 @@ public class Chase : BaseState {
         if (Vector3.Distance(sm.rigidBody.transform.position, sm.player.position) >= 5) {
             stateMachine.ChangeState(sm.returnState);
         }
+
+        
+        
     }
 
     public override void UpdatePhysics() {
