@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc04c14806dc8534087412f562a549b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emitter: {fileID: 0}
   rigidBody: {fileID: 6060671220857871310}
   player: {fileID: 0}
   initialPos: {x: 0, y: 0, z: 0}
-  speed: 1
+  speed: 10
 --- !u!136 &6060671220857871299
 CapsuleCollider:
   m_ObjectHideFlags: 0

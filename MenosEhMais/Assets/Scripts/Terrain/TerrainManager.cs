@@ -14,7 +14,10 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private float scale;
     [SerializeField] private float terrainSize;
 
+    [SerializeField] private GameObject badNPC;
+    [SerializeField] private GameObject goodNPC;
     [SerializeField] private GameObject blabla;
+
 
 
     void Start()
@@ -93,6 +96,7 @@ public class TerrainManager : MonoBehaviour
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
                 Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+                SpawnNPC(Tile);
             }
 
             // GameObject bb = Instantiate(blabla, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ), new Quaternion(0,0,0,1));
@@ -105,6 +109,7 @@ public class TerrainManager : MonoBehaviour
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ), new Quaternion(0,0,0,1), tilesParent);
                 Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y));
+                SpawnNPC(Tile);
             }
 
             // GameObject cc = Instantiate(blabla, new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1));
@@ -117,6 +122,7 @@ public class TerrainManager : MonoBehaviour
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
                 Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x, currentTileCoord.y + direction.y));
+                SpawnNPC(Tile);
             }
         }
         else
@@ -131,7 +137,29 @@ public class TerrainManager : MonoBehaviour
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
                 Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+                SpawnNPC(Tile);
             }
+        }
+    }
+
+    void SpawnNPC(GameObject Tile)
+    {
+        float var = Random.Range(6f, 10f);
+        if(var <= 7.0)
+        {
+            for(int i = 0; i < 2; i++) 
+            {
+                Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+            }
+        }
+        else if(var > 7.0 && var <= 8.0)
+        {
+            Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+        }
+        else if(var > 8.0 && var <= 9.5)
+        {
+            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
         }
     }
 }
