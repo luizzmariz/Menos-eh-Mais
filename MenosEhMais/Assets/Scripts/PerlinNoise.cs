@@ -83,7 +83,7 @@ public class PerlinNoise : MonoBehaviour
 
     float[,] GenerateHeights()
     {
-        Debug.Log("chegou aqui");
+        //Debug.Log("chegou aqui");
         float[,] heights = new float[width, height];
         for(int x = 0; x < width; x++)
         {
