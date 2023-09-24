@@ -350,8 +350,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../FMOD/Festa de Arromba/Festa de Arromba.fspro
-  sourceBankPath: ../../FMOD/Festa de Arromba/Build
+  sourceProjectPath: Assets/FMOD/Festa de Arromba/Festa de Arromba.fspro
+  sourceBankPath: Assets/FMOD/Festa de Arromba/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
