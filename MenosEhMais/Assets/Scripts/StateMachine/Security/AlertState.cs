@@ -11,6 +11,7 @@ public class Alert : BaseState {
 
     public override void Enter() {
         base.Enter();
+        sm.sr.sprite = sm.down;
     }
 
     public override void UpdateLogic() {

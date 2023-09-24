@@ -272,7 +272,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -650,7 +650,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7854204163675755464, guid: 26df4214817a60f4891c2bd801b60bd0, type: 3}
       propertyPath: moveSpeed
-      value: 45
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7854204163675755468, guid: 26df4214817a60f4891c2bd801b60bd0, type: 3}
       propertyPath: m_RootOrder
@@ -700,5 +700,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7854204163675755507, guid: 26df4214817a60f4891c2bd801b60bd0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ee6b830f2797bf444a8d5a82c11a38ab, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26df4214817a60f4891c2bd801b60bd0, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7854204163675755469}
   - component: {fileID: 7854204163675755471}
   - component: {fileID: 7854204163675755464}
+  - component: {fileID: 7330347155402743362}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -128,9 +129,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2360ebe7a28595a49b3d7524d84c588b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 4
   sr: {fileID: 7854204163675755507}
-  down: {fileID: 21300000, guid: 37dc69dfdb077eb4b8988f2230fbcf60, type: 3}
-  right: {fileID: 21300000, guid: c029cb582f9ae5d42ab30600d6b44405, type: 3}
-  left: {fileID: 21300000, guid: 3998db9505457884fbeaaeaf6e0d5c7c, type: 3}
-  up: {fileID: 21300000, guid: 7d26050226f0a004ca26c48b97a2b5d0, type: 3}
+--- !u!114 &7330347155402743362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854204163675755506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e586b75a0007d4f8fb8c65dcc17e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: fa101991e1544c7448bf46e89cef16b7, type: 3}
+  - {fileID: 21300000, guid: 49e3d97995c257f418ad4efe0b14558c, type: 3}
+  - {fileID: 21300000, guid: e01035651c066344280137b2f3051cfa, type: 3}
+  - {fileID: 21300000, guid: ee6b830f2797bf444a8d5a82c11a38ab, type: 3}
+  - {fileID: 21300000, guid: b66b997b95a4f0b4ba49daf6f95fc060, type: 3}
+  - {fileID: 21300000, guid: 1688a7af3021c834baadf620ca9156ba, type: 3}
+  - {fileID: 21300000, guid: 73fd29f3c1f55c443807018dab0af93c, type: 3}
+  - {fileID: 21300000, guid: 84cda0facaaecae4799dc009efc6a185, type: 3}
+  - {fileID: 21300000, guid: 1ba75ef351482e144bab4c95d6a3915d, type: 3}
+  - {fileID: 21300000, guid: 9b71750c9ae3ab34f97097f6675c0e16, type: 3}
+  - {fileID: 21300000, guid: 0470e2d87381bdd4a80ac997f080ed29, type: 3}
+  - {fileID: 21300000, guid: d21e93d2b0d44e8429bc85eee4496a5e, type: 3}
+  currentSpriteUp: {fileID: 0}
+  currentSpriteLeft: {fileID: 0}
+  currentSpriteRight: {fileID: 0}
+  currentSpriteDown: {fileID: 0}

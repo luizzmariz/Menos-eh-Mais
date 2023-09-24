@@ -19,6 +19,13 @@ public class SecuritySM : StateMachine {
     public Vector3 initialPos;
     public float speed = 1f;
 
+    //[Header("Sprites")]
+    public SpriteRenderer sr;
+    public Sprite down;
+    public Sprite right;
+    public Sprite left;
+    public Sprite up;
+
     private void Awake() {
         relaxedState = new Relaxed(this);
         chaseState = new Chase(this);

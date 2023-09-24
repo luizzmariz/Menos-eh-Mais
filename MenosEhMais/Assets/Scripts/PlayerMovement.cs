@@ -7,14 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Physics")]
     private Rigidbody rb;
     private Vector3 input;
-    public float moveSpeed; 
+    public float moveSpeed;
 
     //[Header("Sprites")]
     public SpriteRenderer sr;
-    public Sprite down;
-    public Sprite right;
-    public Sprite left;
-    public Sprite up;
 
     // Start is called before the first frame update
     void Start()
@@ -37,42 +33,42 @@ public class PlayerMovement : MonoBehaviour
         if (input == new Vector3(0,0,1)) 
         {
             input = new Vector3(1,0,1);//Up
-            sr.sprite = up;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteUp;
         } 
         else if (input == new Vector3(1,0,1)) 
         {
             input = new Vector3(1,0,0);//UpRight
-            sr.sprite = right;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteRight;
         } 
         else if (input == new Vector3(1,0,0)) 
         {
             input = new Vector3(1,0,-1);//Right
-            sr.sprite = right;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteRight;
         } 
         else if (input == new Vector3(-1,0,1)) 
         {
             input = new Vector3(0,0,1);//UpLeft
-            sr.sprite = left;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteLeft;
         } 
         else if (input == new Vector3(1,0,-1)) 
         {
             input = new Vector3(0,0,-1);//DownRight
-            sr.sprite = right;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteRight;
         } 
         else if (input == new Vector3(0,0,-1)) 
         {
             input = new Vector3(-1,0,-1);//Down
-            sr.sprite = down;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteDown;
         } 
         else if (input == new Vector3(-1,0,-1)) 
         {
             input = new Vector3(-1,0,0);//DownLeft
-            sr.sprite = left;
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteLeft;
         } 
         else if (input == new Vector3(-1,0,0)) 
         {
-            input = new Vector3(-1,0,1);//Left
-            sr.sprite = left;
+            input = new Vector3(-1,0,1);
+            sr.sprite = this.GetComponent<PlayerSkins>().currentSpriteLeft;
         }
     }   
     

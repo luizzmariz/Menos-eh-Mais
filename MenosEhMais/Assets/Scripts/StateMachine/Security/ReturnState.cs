@@ -27,5 +27,14 @@ public class Return : BaseState {
         Vector3 currentPos = new Vector3(sm.rigidBody.transform.position.x, 0, sm.rigidBody.transform.position.z);
         Vector3 initialPos = new Vector3(sm.initialPos.x, 0, sm.initialPos.z);
         sm.rigidBody.velocity = sm.speed * (initialPos - currentPos).normalized;
+        if (sm.rigidBody.velocity.x == sm.rigidBody.velocity.y && sm.rigidBody.velocity.x < 0) {
+            sm.sr.sprite = sm.down;
+        } else if (sm.rigidBody.velocity.x == sm.rigidBody.velocity.z && sm.rigidBody.velocity.x > 0) {
+            sm.sr.sprite = sm.up;
+        } else if (sm.rigidBody.velocity.x > sm.rigidBody.velocity.z) {
+            sm.sr.sprite = sm.right;
+        } else if (sm.rigidBody.velocity.x < sm.rigidBody.velocity.z) {
+            sm.sr.sprite = sm.left;
+        } 
     }
 }

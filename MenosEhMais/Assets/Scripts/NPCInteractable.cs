@@ -6,8 +6,10 @@ using TMPro;
 
 public class NPCInteractable : Interactable
 {
+    public GameObject player;
     protected override void Interact()
     {
-        Debug.Log("2134123");
+        player = GameObject.Find("Player");
+        player.GetComponent<PlayerSkins>().ChangeSprites();
     }
 }

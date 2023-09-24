@@ -149,17 +149,17 @@ public class TerrainManager : MonoBehaviour
         {
             for(int i = 0; i < 2; i++) 
             {
-                Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+                Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0.239117652f,0.369643807f,-0.0990457684f,0.892399132f), Tile.transform);
             }
         }
         else if(var > 7.0 && var <= 8.0)
         {
-            Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
-            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+            Instantiate(badNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0.239117652f,0.369643807f,-0.0990457684f,0.892399132f), Tile.transform);
+            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0.239117652f,0.369643807f,-0.0990457684f,0.892399132f), Tile.transform);
         }
         else if(var > 8.0 && var <= 9.5)
         {
-            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0,0,0,1), Tile.transform);
+            Instantiate(goodNPC, new Vector3(Random.Range(Tile.transform.position.x -5, Tile.transform.position.x +5), 1, Random.Range(Tile.transform.position.z -5, Tile.transform.position.z +5)), new Quaternion(0.239117652f,0.369643807f,-0.0990457684f,0.892399132f), Tile.transform);
         }
     }
 }
