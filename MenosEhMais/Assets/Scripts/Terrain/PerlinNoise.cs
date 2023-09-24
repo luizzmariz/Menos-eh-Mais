@@ -59,7 +59,6 @@ public class PerlinNoise : MonoBehaviour
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
 
-        Color cor;
         // if(x == 0 && y <30)
         // {
         //     if(y == 0) Debug.Log("Ponto 0,0 é " + xCoord + " " + yCoord);
