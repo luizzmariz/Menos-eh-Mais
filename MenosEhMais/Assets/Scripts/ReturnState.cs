@@ -16,7 +16,7 @@ public class Return : BaseState {
         base.UpdateLogic();
         if (Vector3.Distance(sm.rigidBody.transform.position, sm.player.position) <= 3) {
             stateMachine.ChangeState(sm.chaseState);
-        } else if (Vector3.Distance (sm.rigidBody.transform.position, sm.initialPos) < 1) {
+        } else if (Vector3.Distance(sm.rigidBody.transform.position, sm.initialPos) < 0.3) {
             stateMachine.ChangeState(sm.alertState);
         }
     }
@@ -24,8 +24,7 @@ public class Return : BaseState {
     public override void UpdatePhysics() {
         base.UpdatePhysics();
         Vector3 currentPos = new Vector3(sm.rigidBody.transform.position.x, 0, sm.rigidBody.transform.position.z);
-        Vector3 initialPos = new Vector3(sm.initialPos.x, 0, sm.player.position.z);
-        Vector3 direction = initialPos - currentPos;
-        sm.rigidBody.velocity = sm.speed * direction;
+        Vector3 initialPos = new Vector3(sm.initialPos.x, 0, sm.initialPos.z);
+        sm.rigidBody.velocity = sm.speed * (initialPos - currentPos).normalized;
     }
 }
