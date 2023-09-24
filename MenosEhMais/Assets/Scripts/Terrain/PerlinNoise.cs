@@ -22,10 +22,10 @@ public class PerlinNoise : MonoBehaviour
 
         tileCoord = tilePos;
         this.scale = scale;
-        this.offsetX = offsetX + tileCoord.x * scale;
-        this.offsetZ = offsetZ + tileCoord.y * scale;
-        // this.offsetX = offsetX - tileCoord.x;
-        // this.offsetZ = offsetZ - tileCoord.y;
+        // this.offsetX = offsetX + tileCoord.x * scale;
+        // this.offsetZ = offsetZ + tileCoord.y * scale;
+        this.offsetX = offsetX - tileCoord.x;
+        this.offsetZ = offsetZ - tileCoord.y;
 
         rend.material.mainTexture = GenerateTexture();
     }
@@ -52,28 +52,28 @@ public class PerlinNoise : MonoBehaviour
 
     Color CalculateColor(int x, int y)
     {
-        float xCoord = (float)x / (width-1) * scale + offsetX;
-        float yCoord = (float)y / (height-1) * scale + offsetZ;
-        // float xCoord = (float)x / (width-1) + offsetX;
-        // float yCoord = (float)y / (height-1) + offsetZ;
+        // float xCoord = (float)x / (width-1) * scale + offsetX;
+        // float yCoord = (float)y / (height-1) * scale + offsetZ;
+        float xCoord = (float)x / (width-1) + offsetX;
+        float yCoord = (float)y / (height-1) + offsetZ;
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
 
         Color cor;
-        if(x == 0 && y <30)
-        {
-            if(y == 0) Debug.Log("Ponto 0,0 é " + xCoord + " " + yCoord);
-            cor = new Color(sample, 0, 0);
-        }
-        else if(x == (height-1) && y <30)
-        {
-            if(y == 0) Debug.Log("Ponto " + (height-1) + ",0 é " + xCoord + " " + yCoord);
-            cor = new Color(0, sample, 0);
-        }
-        else
-        {
-            cor = new Color(sample, sample, sample);
-        }
-        return cor;
+        // if(x == 0 && y <30)
+        // {
+        //     if(y == 0) Debug.Log("Ponto 0,0 é " + xCoord + " " + yCoord);
+        //     cor = new Color(sample, 0, 0);
+        // }
+        // else if(x == (height-1) && y <30)
+        // {
+        //     if(y == 0) Debug.Log("Ponto " + (height-1) + ",0 é " + xCoord + " " + yCoord);
+        //     cor = new Color(0, sample, 0);
+        // }
+        // else
+        // {
+        //     cor = new Color(sample, sample, sample);
+        // }
+        return new Color(sample, sample, sample);
     }
 }
