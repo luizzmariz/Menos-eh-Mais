@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1164907124431596943}
   - component: {fileID: 5409355101974068376}
   - component: {fileID: 7049462367707765836}
-  - component: {fileID: 4107018461954264252}
+  - component: {fileID: 1072352104808649560}
   m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
@@ -79,7 +79,7 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: f4eb628356ee47647a893eb67190d910, type: 2}
   m_EnableTreeColliders: 1
---- !u!114 &4107018461954264252
+--- !u!114 &1072352104808649560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,15 +88,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8306189401366064465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 209ee8638dda8c84a94c9ed50df40253, type: 3}
+  m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  tilesParent: {fileID: 0}
-  terrainTile: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
-  offSetX: 0
-  offSetZ: 0
-  scale: 0
+  depth: 5
+  offsetX: 100
+  offsetZ: 100
+  tileCoord: {x: 0, y: 0}

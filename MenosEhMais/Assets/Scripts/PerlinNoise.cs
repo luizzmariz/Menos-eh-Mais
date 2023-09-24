@@ -9,25 +9,33 @@ public class PerlinNoise : MonoBehaviour
     private int height = 256; 
 
     [Header("Perlin Noise")]
-    private float scale = 20f;
-    public int depth = 20;
-    public float offsetX = 100f;
-    public float offsetZ = 100f;
+    public float scale;
+    public int depth;
+    public float offsetX;
+    public float offsetZ;
     public Vector2 tileCoord;
 
     private Renderer rend;
+    private Terrain terrain;
 
-    public void StartScript(float offsetX, float offsetZ, float scale, Vector2 tilePos)
+    public void StartScript(float offsetX, float offsetZ, float scale, int depth, Vector2 tilePos)
     {
-        Terrain terrain = GetComponent<Terrain>();
+        terrain = GetComponent<Terrain>();
         rend = GetComponent<Renderer>();   
 
         tileCoord = tilePos;
+        this.scale = scale;
         this.offsetX = offsetX + tileCoord.x * scale;
         this.offsetZ = offsetZ + tileCoord.y * scale;
+        this.depth = depth;
 
-        terrain.terrainData = GenerateTerrain(terrain.terrainData);
+        
         //rend.material.mainTexture = GenerateTexture();
+    }
+
+    void Update()
+    {
+        terrain.terrainData = GenerateTerrain(terrain.terrainData);
     }
 
     Texture2D GenerateTexture()
@@ -67,7 +75,7 @@ public class PerlinNoise : MonoBehaviour
     TerrainData GenerateTerrain (TerrainData terrainData)
     {
         terrainData.heightmapResolution = width + 1;
-        terrainData.size = new Vector3(width, depth, height);
+        terrainData.size = new Vector3(10, depth, 10);
 
         terrainData.SetHeights(0, 0, GenerateHeights());
         return terrainData;

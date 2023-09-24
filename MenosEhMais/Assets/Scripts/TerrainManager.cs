@@ -11,8 +11,9 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private float offSetX;
     [SerializeField] private float offSetZ;
     [SerializeField] private float scale;
+    [SerializeField] private int depth;
 
-    /*void Start()
+    void Start()
     {
         //offSetX = Random.Range(0f, 99999f);
         //offSetZ = Random.Range(0f, 99999f);
@@ -21,11 +22,11 @@ public class TerrainManager : MonoBehaviour
 
         player = GameObject.Find("Player").transform;
 
-        GameObject initialTile = Instantiate(terrainTile, Vector3.zero, new Quaternion(0,0,0,1), tilesParent);
-        initialTile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, Vector2.zero);
+        GameObject initialTile = Instantiate(terrainTile, new Vector3(-5f, 0f, -5f), new Quaternion(0,0,0,1), tilesParent);
+        initialTile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, Vector2.zero);
 
 
-    }*/
+    }
 
     void Update()
     {
@@ -82,7 +83,7 @@ public class TerrainManager : MonoBehaviour
             if(hitColliders.Length == 0)
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
-                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
             }
 
             //X axis
@@ -90,14 +91,14 @@ public class TerrainManager : MonoBehaviour
             if(hitColliders2.Length == 0)
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ), new Quaternion(0,0,0,1), tilesParent);
-                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y));
+                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y));
             }
             //Z axis
             Collider[] hitColliders3 = Physics.OverlapSphere(new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), 1f, mask);
             if(hitColliders3.Length == 0)
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
-                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x, currentTileCoord.y + direction.y));
+                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, new Vector2(currentTileCoord.x, currentTileCoord.y + direction.y));
             }
         }
         else
@@ -107,7 +108,7 @@ public class TerrainManager : MonoBehaviour
             if(hitColliders.Length == 0)
             {
                 GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
-                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+                Tile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
             }
         }
     }
