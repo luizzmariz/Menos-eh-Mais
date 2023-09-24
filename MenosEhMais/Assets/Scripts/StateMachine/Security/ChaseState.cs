@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chase : BaseState {
     private SecuritySM sm;
+
+    [SerializeField]
     
     public Chase(SecuritySM stateMachine) : base("Chase", stateMachine) {
         sm = (SecuritySM)stateMachine;
@@ -11,6 +13,7 @@ public class Chase : BaseState {
 
     public override void Enter() {
         base.Enter();
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.PoliceCall, sm.transform.position);
     }
 
     public override void UpdateLogic() {

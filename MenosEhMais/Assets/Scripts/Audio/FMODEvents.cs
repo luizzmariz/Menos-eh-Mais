@@ -5,6 +5,11 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
+
+    [field: Header("HEY SFX")]
+
+    [field: SerializeField] public EventReference PoliceCall {get; private set; }
+
     public static FMODEvents instance {get; private set; }
 
     private void Awake(){
