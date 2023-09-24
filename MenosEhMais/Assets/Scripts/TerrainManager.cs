@@ -7,6 +7,7 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform tilesParent;
     [SerializeField] private GameObject terrainTile;
+    [SerializeField] private GameObject blabla;
     [SerializeField] LayerMask mask;
     [SerializeField] private float offSetX;
     [SerializeField] private float offSetZ;
@@ -14,16 +15,19 @@ public class TerrainManager : MonoBehaviour
 
     void Start()
     {
-        offSetX = Random.Range(0f, 99999f);
-        offSetZ = Random.Range(0f, 99999f);
+        //offSetX = Random.Range(0f, 99999f);
+        //offSetZ = Random.Range(0f, 99999f);
+        offSetX = 100;
+        offSetZ = 100;
 
         player = GameObject.Find("Player").transform;
 
         GameObject initialTile = Instantiate(terrainTile, Vector3.zero, new Quaternion(0,0,0,1), tilesParent);
         initialTile.GetComponent<PerlinNoise>().GenerateTerrain(offSetX, offSetZ, scale, Vector2.zero);
+
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(player.position, Vector3.down);
@@ -31,10 +35,8 @@ public class TerrainManager : MonoBehaviour
 
         if(Physics.Raycast(ray, out hitInfo, 5f, mask))
         {
-            //Vector2 currentTileCoord = hitInfo.collider.GetComponent<PerlinNoise>().tileCoord;
             CheckPosition(hitInfo.collider.gameObject);
         } 
-        
     }
 
     void CheckPosition(GameObject currentTile)
@@ -56,15 +58,58 @@ public class TerrainManager : MonoBehaviour
         {
             direction.y = 1;
         }
-        if(centerDistZ >= 3.5)
+        if(centerDistZ <= -3.5)
         {
             direction.y = -1;
         }
-        //GenerateTiles();
+
+        if(direction != Vector2.zero)
+        {
+            GenerateTiles(currentTile, direction);
+        }
     }
 
-    void GenerateTiles(Vector2 baseTileCoord, Vector2 direction)
+    void GenerateTiles(GameObject currentTile, Vector2 direction)
     {
-        GameObject initialTile = Instantiate(terrainTile, Vector3.zero, new Quaternion(0,0,0,1), tilesParent);
+        float currentTilePosX = currentTile.GetComponent<Transform>().position.x;
+        float currentTilePosZ = currentTile.GetComponent<Transform>().position.z;
+        float halfScale = scale / 2;
+        Vector2 currentTileCoord = currentTile.GetComponent<PerlinNoise>().tileCoord;
+
+        if(direction.x != 0 && direction.y != 0)
+        {
+            //Diagonal
+            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), 1f, mask);
+            if(hitColliders.Length == 0)
+            {
+                GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
+                Tile.GetComponent<PerlinNoise>().GenerateTerrain(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+            }
+
+            //X axis
+            Collider[] hitColliders2 = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ), 1f, mask);
+            if(hitColliders2.Length == 0)
+            {
+                GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ), new Quaternion(0,0,0,1), tilesParent);
+                Tile.GetComponent<PerlinNoise>().GenerateTerrain(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y));
+            }
+            //Z axis
+            Collider[] hitColliders3 = Physics.OverlapSphere(new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), 1f, mask);
+            if(hitColliders3.Length == 0)
+            {
+                GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
+                Tile.GetComponent<PerlinNoise>().GenerateTerrain(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x, currentTileCoord.y + direction.y));
+            }
+        }
+        else
+        {
+            //X or Z axis
+            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), 1f, mask);
+            if(hitColliders.Length == 0)
+            {
+                GameObject Tile = Instantiate(terrainTile, new Vector3(currentTilePosX + direction.x * halfScale, 0, currentTilePosZ + direction.y * halfScale), new Quaternion(0,0,0,1), tilesParent);
+                Tile.GetComponent<PerlinNoise>().GenerateTerrain(offSetX, offSetZ, scale, new Vector2(currentTileCoord.x + direction.x, currentTileCoord.y + direction.y));
+            }
+        }
     }
 }
