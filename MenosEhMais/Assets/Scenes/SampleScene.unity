@@ -470,14 +470,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   tilesParent: {fileID: 155678146}
-  terrainTile: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+  terrainTile: {fileID: 8319494363604083983, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 8
   offSetX: 0
   offSetZ: 0
-  scale: 2.25
+  perlinScale: 2.25
   depth: 1
+  blabla: {fileID: 7544023695850413613, guid: 5d99cbd2a07c7ec4cbe6afb1eddebfcc, type: 3}
 --- !u!1 &170202851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1300,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1285397708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160767141648311761, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319494363604083983, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_Name
+      value: Terrain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
 --- !u!1 &1444021500
 GameObject:
   m_ObjectHideFlags: 0

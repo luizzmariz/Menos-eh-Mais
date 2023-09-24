@@ -5,8 +5,8 @@ using UnityEngine;
 public class PerlinNoise : MonoBehaviour
 {
     [Header("Texture")]
-    private int width = 256;
-    private int height = 256; 
+    private int width = 32;
+    private int height = 32; 
 
     [Header("Perlin Noise")]
     public float scale;
@@ -20,7 +20,7 @@ public class PerlinNoise : MonoBehaviour
 
     public void StartScript(float offsetX, float offsetZ, float scale, int depth, Vector2 tilePos)
     {
-        terrain = GetComponent<Terrain>();
+        terrain = this.GetComponent<Terrain>();
         rend = GetComponent<Renderer>();   
 
         tileCoord = tilePos;
@@ -29,15 +29,14 @@ public class PerlinNoise : MonoBehaviour
         this.offsetZ = offsetZ + tileCoord.y * scale;
         this.depth = depth;
 
-        
+        terrain.terrainData = GenerateTerrain(terrain.terrainData);
         //rend.material.mainTexture = GenerateTexture();
     }
 
-    void Update()
+    /*void Update()
     {
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
-    }
-
+    }*/
     Texture2D GenerateTexture()
     {
         Texture2D texture = new Texture2D(width, height);
@@ -74,6 +73,7 @@ public class PerlinNoise : MonoBehaviour
 
     TerrainData GenerateTerrain (TerrainData terrainData)
     {
+        
         terrainData.heightmapResolution = width + 1;
         terrainData.size = new Vector3(10, depth, 10);
 
@@ -83,6 +83,7 @@ public class PerlinNoise : MonoBehaviour
 
     float[,] GenerateHeights()
     {
+        Debug.Log("chegou aqui");
         float[,] heights = new float[width, height];
         for(int x = 0; x < width; x++)
         {
