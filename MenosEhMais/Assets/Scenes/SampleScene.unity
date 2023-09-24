@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -347,12 +348,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154567315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: 0.29, z: 9.38}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &154567321
 Rigidbody:
@@ -368,7 +369,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &155678144
 GameObject:
@@ -469,13 +470,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   tilesParent: {fileID: 155678146}
-  terrainTile: {fileID: 1816059744564685213, guid: 4c9fa78489d3577419d07aa66993b8b7, type: 3}
+  terrainTile: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 8
   offSetX: 0
   offSetZ: 0
-  scale: 20
+  scale: 2.25
+  depth: 1
 --- !u!1 &170202851
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -638,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -758,6 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -873,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -1115,7 +1121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746905502}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1136,7 +1142,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &746905507
 BoxCollider:
@@ -1372,6 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -1487,6 +1494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -1602,6 +1610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
   depth: 20
   offsetX: 100
   offsetZ: 100
@@ -1727,68 +1736,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c9fa78489d3577419d07aa66993b8b7, type: 3}
---- !u!1001 &6182658346316171941
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4107018461954264252, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: terrainTile
-      value: 
-      objectReference: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-    - target: {fileID: 4107018461954264252, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: tilesParent
-      value: 
-      objectReference: {fileID: 155678146}
-    - target: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
-      propertyPath: m_Name
-      value: Terrain
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}

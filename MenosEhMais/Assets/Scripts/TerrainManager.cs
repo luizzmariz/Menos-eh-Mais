@@ -24,8 +24,6 @@ public class TerrainManager : MonoBehaviour
 
         GameObject initialTile = Instantiate(terrainTile, new Vector3(-5f, 0f, -5f), new Quaternion(0,0,0,1), tilesParent);
         initialTile.GetComponent<PerlinNoise>().StartScript(offSetX, offSetZ, scale, depth, Vector2.zero);
-
-
     }
 
     void Update()
