@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &52602712
 MeshCollider:
@@ -335,7 +338,6 @@ MonoBehaviour:
   player: {fileID: 0}
   tilesParent: {fileID: 155678146}
   terrainTile: {fileID: 1816059744564685213, guid: 4c9fa78489d3577419d07aa66993b8b7, type: 3}
-  blabla: {fileID: 7544023695850413613, guid: 5d99cbd2a07c7ec4cbe6afb1eddebfcc, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 8
@@ -389,6 +391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &170202854
 MeshCollider:
@@ -501,6 +506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &304990941
 MeshCollider:
@@ -618,6 +626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &472580671
 MeshCollider:
@@ -730,6 +741,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &551382791
 MeshCollider:
@@ -1226,6 +1240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &1459211571
 MeshCollider:
@@ -1338,6 +1355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &1679973213
 MeshCollider:
@@ -1450,6 +1470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd338af0980cf7a488cab3f71a1249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  depth: 20
+  offsetX: 100
+  offsetZ: 100
   tileCoord: {x: 0, y: 0}
 --- !u!64 &1688447825
 MeshCollider:
@@ -1572,3 +1595,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c9fa78489d3577419d07aa66993b8b7, type: 3}
+--- !u!1001 &6182658346316171941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164907124431596943, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107018461954264252, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: terrainTile
+      value: 
+      objectReference: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+    - target: {fileID: 4107018461954264252, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: tilesParent
+      value: 
+      objectReference: {fileID: 155678146}
+    - target: {fileID: 8306189401366064465, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}
+      propertyPath: m_Name
+      value: Terrain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d04bdf4a662f6134fa7c582b60f31fd8, type: 3}

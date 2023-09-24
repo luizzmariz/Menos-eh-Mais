@@ -10,21 +10,24 @@ public class PerlinNoise : MonoBehaviour
 
     [Header("Perlin Noise")]
     private float scale = 20f;
+    public int depth = 20;
     public float offsetX = 100f;
     public float offsetZ = 100f;
     public Vector2 tileCoord;
 
     private Renderer rend;
 
-    public void GenerateTerrain(float offsetX, float offsetZ, float scale, Vector2 tilePos)
+    public void StartScript(float offsetX, float offsetZ, float scale, Vector2 tilePos)
     {
+        Terrain terrain = GetComponent<Terrain>();
         rend = GetComponent<Renderer>();   
 
         tileCoord = tilePos;
         this.offsetX = offsetX + tileCoord.x * scale;
         this.offsetZ = offsetZ + tileCoord.y * scale;
-        
-        rend.material.mainTexture = GenerateTexture();
+
+        terrain.terrainData = GenerateTerrain(terrain.terrainData);
+        //rend.material.mainTexture = GenerateTexture();
     }
 
     Texture2D GenerateTexture()
@@ -60,33 +63,6 @@ public class PerlinNoise : MonoBehaviour
 
         return new Color(sample, sample, sample);
     }
-}
-
-using UnityEngine;
-
-public class TerrainGeneration : MonoBehaviour
-{
-    public int width = 256; //x-axis of the terrain
-    public int height = 256; //z-axis
-
-    public int depth = 20; //y-axis
-
-    public float scale = 20f;
-
-    public float offsetX = 100f;
-    public float offsetY = 100f;
-
-    private void Start()
-    {
-        offsetX = Random.Range(0f, 9999f);
-        offsetY = Random.Range(0f, 9999f);
-    }
-
-    private void Update()
-    {
-        Terrain terrain = GetComponent<Terrain>();
-        terrain.terrainData = GenerateTerrain(terrain.terrainData);
-    }
 
     TerrainData GenerateTerrain (TerrainData terrainData)
     {
@@ -113,9 +89,36 @@ public class TerrainGeneration : MonoBehaviour
 
     float CalculateHeight (int x, int y)
     {
-        float xCoord = (float)x / width * scale + offsetX;
-        float yCoord = (float)y / height * scale + offsetY;
+        float xCoord = (float)x / (width-1) * scale + offsetX;
+        float yCoord = (float)y / (height-1) * scale + offsetZ;
 
         return Mathf.PerlinNoise(xCoord, yCoord);
     }
 }
+
+/*using UnityEngine;
+
+public class TerrainGeneration : MonoBehaviour
+{
+    public int width = 256; //x-axis of the terrain
+    public int height = 256; //z-axis
+
+    public int depth = 20; //y-axis
+
+    public float scale = 20f;
+
+    public float offsetX = 100f;
+    public float offsetY = 100f;
+
+    private void Start()
+    {
+        offsetX = Random.Range(0f, 9999f);
+        offsetY = Random.Range(0f, 9999f);
+    }
+
+    private void Update()
+    {
+        Terrain terrain = GetComponent<Terrain>();
+        terrain.terrainData = GenerateTerrain(terrain.terrainData);
+    }
+}*/
