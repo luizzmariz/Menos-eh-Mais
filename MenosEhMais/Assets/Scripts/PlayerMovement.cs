@@ -10,17 +10,17 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed; 
 
     //[Header("Sprites")]
-    /*public SpriteRenderer sr;
+    public SpriteRenderer sr;
     public Sprite down;
     public Sprite right;
     public Sprite left;
-    public Sprite up;*/
+    public Sprite up;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //sr = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,35 +36,43 @@ public class PlayerMovement : MonoBehaviour
 
         if (input == new Vector3(0,0,1)) 
         {
-            input = new Vector3(1,0,1);
+            input = new Vector3(1,0,1);//Up
+            sr.sprite = up;
         } 
         else if (input == new Vector3(1,0,1)) 
         {
-            input = new Vector3(1,0,0);
+            input = new Vector3(1,0,0);//UpRight
+            sr.sprite = right;
         } 
         else if (input == new Vector3(1,0,0)) 
         {
-            input = new Vector3(1,0,-1);
+            input = new Vector3(1,0,-1);//Right
+            sr.sprite = right;
         } 
         else if (input == new Vector3(-1,0,1)) 
         {
-            input = new Vector3(0,0,1);
+            input = new Vector3(0,0,1);//UpLeft
+            sr.sprite = left;
         } 
         else if (input == new Vector3(1,0,-1)) 
         {
-            input = new Vector3(0,0,-1);
+            input = new Vector3(0,0,-1);//DownRight
+            sr.sprite = right;
         } 
         else if (input == new Vector3(0,0,-1)) 
         {
-            input = new Vector3(-1,0,-1);
+            input = new Vector3(-1,0,-1);//Down
+            sr.sprite = down;
         } 
         else if (input == new Vector3(-1,0,-1)) 
         {
-            input = new Vector3(-1,0,0);
+            input = new Vector3(-1,0,0);//DownLeft
+            sr.sprite = left;
         } 
         else if (input == new Vector3(-1,0,0)) 
         {
-            input = new Vector3(-1,0,1);
+            input = new Vector3(-1,0,1);//Left
+            sr.sprite = left;
         }
     }   
     
