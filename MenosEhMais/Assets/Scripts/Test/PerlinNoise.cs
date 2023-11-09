@@ -7,32 +7,35 @@ public class PerlinNoise : MonoBehaviour
     [Header("Texture")]
     private int width = 256;
     private int height = 256; 
+    private Renderer rend;
 
     [Header("Perlin Noise")]
     public float scale;
-    //public float terrainScale;
     public float offsetX;
     public float offsetZ;
     public Vector2 tileCoord;
-    private Renderer rend;
-
+    
     public void StartScript(float offsetX, float offsetZ, float scale, Vector2 tilePos)
     {
         rend = GetComponent<Renderer>();   
+        //terrain = this.GetComponent<Terrain>();
 
         tileCoord = tilePos;
         this.scale = scale;
-        // this.offsetX = offsetX + tileCoord.x * scale;
-        // this.offsetZ = offsetZ + tileCoord.y * scale;
+        
+        // this.offsetX = offsetX - tileCoord.x * scale;
+        // this.offsetZ = offsetZ - tileCoord.y * scale;
         this.offsetX = offsetX - tileCoord.x;
         this.offsetZ = offsetZ - tileCoord.y;
 
+        //terrain.terrainData = GenerateTerrain(terrain.terrainData);
         rend.material.mainTexture = GenerateTexture();
     }
 
     // void Update()
     // {
     //     rend.material.mainTexture = GenerateTexture();
+    //     terrain.terrainData = GenerateTerrain(terrain.terrainData);
     // }
     Texture2D GenerateTexture()
     {

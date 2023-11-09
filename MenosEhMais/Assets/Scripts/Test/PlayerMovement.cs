@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 input;
     public float moveSpeed;
+    public float maxSlopeAngle;
+    [SerializeField] LayerMask mask;
 
-    //[Header("Sprites")]
+    [Header("Sprites")]
     public SpriteRenderer sr;
 
     // Start is called before the first frame update
@@ -23,12 +25,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetInputs();
+        //CheckSlope();
         MovePlayer();
     }
 
     void GetInputs()
     {
-        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         if (input == new Vector3(0,0,1)) 
         {
@@ -72,9 +75,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }   
     
+    /*void CheckSlope()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hitInfo;
+
+        if(Physics.Raycast(ray, out hitInfo, 1f, mask))
+        {
+            if(Vector3.Angle(Vector3.up, hitInfo.normal) < maxSlopeAngle && Vector3.Angle(Vector3.up, hitInfo.normal) != 0)
+            {
+                input = Vector3.ProjectOnPlane(input, hitInfo.normal).normalized;
+            }
+        } 
+    }*/
+
     void MovePlayer()
     {
         //rb.AddForce(input * moveSpeed, ForceMode.Acceleration);
+        //Debug.DrawRay(transform.position, transform.position + input * moveSpeed, Color.red);
         rb.velocity = input * moveSpeed;
     }
 }
