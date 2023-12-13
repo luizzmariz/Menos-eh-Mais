@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     public KeyCode sprintKey;
     private bool isRunning;
     public float maxSlopeAngle;
-    private bool incontrolable;
+    public bool incontrolable;
     public float fallSpeed;
     [SerializeField] LayerMask mask;
 
     [Header("Sprites")]
     public SpriteRenderer sr;
+
+    //TO COLOCANDO ESSA VARIAVEL AQUI PQ FAZ PARTE, FEITO DE ULTIMA HORA NÉ HEHEHE, brincadeira eu me garanti mas to com preguiça de criar um script e logica mt boa pra esse role de inventario
+    public float itensCollected; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         isRunning = false;
         incontrolable = true;
+        itensCollected = 0;
     }
 
     // Update is called once per frame
@@ -40,7 +44,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        incontrolable = false;
+        int layer = LayerMask.NameToLayer("TerrainTest");
+        if(other.gameObject.layer == layer)
+        {
+            incontrolable = false;
+        }
     }
 
     void GetInputs()

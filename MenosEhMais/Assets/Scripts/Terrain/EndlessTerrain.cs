@@ -47,7 +47,7 @@ public class EndlessTerrain : MonoBehaviour {
 	void UpdateVisibleChunks() {
 
 		for (int i = 0; i < terrainChunksVisibleLastUpdate.Count; i++) {
-			terrainChunksVisibleLastUpdate [i].SetVisible (false);
+			terrainChunksVisibleLastUpdate [i].SetVisible (false, false);
 		}
 		terrainChunksVisibleLastUpdate.Clear ();
 			
@@ -72,6 +72,7 @@ public class EndlessTerrain : MonoBehaviour {
 
 		GameObject meshObject;
 		Vector2 position;
+		Vector3 positionV3;
 		Bounds bounds;
 
 		MeshRenderer meshRenderer;
@@ -86,30 +87,32 @@ public class EndlessTerrain : MonoBehaviour {
 		bool mapDataReceived;
 		int previousLODIndex = -1;
 
+		Transform parent;
+		Material material;
+
 		//[Range(1.35f,1.55f)]
 		public float highPointQuote = 1.47f;
 		bool hasCave;
+		float caveSeed;
 		CaveEntrance caveEntrance;
+		Dungeon dungeon;
+
+		//Prof. Isaac, se vc chegou até aqui olhando meu código saiba que está é uma mensagem de amor pra ti, ficou faltando uma lista de recursos(gameobjects) recolhidos utilizada para checar se deveria spawnar ou não o item na caverna. Dito isso me empenhei nos ultimos minutos como um bom vagabundo empenhado, foi foda tmj! 
+
+		bool objectIsCreated;
 
 		public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material material) {
 			this.detailLevels = detailLevels;
+			this.parent = parent;
+			this.material = material;
 
 			hasCave = false;
 
 			position = coord * size;
 			bounds = new Bounds(position,Vector2.one * size);
-			Vector3 positionV3 = new Vector3(position.x,0,position.y);
+			positionV3 = new Vector3(position.x,0,position.y);
 
-			meshObject = new GameObject("Terrain Chunk");
-			meshRenderer = meshObject.AddComponent<MeshRenderer>();
-			meshFilter = meshObject.AddComponent<MeshFilter>();
-			meshCollider = meshObject.AddComponent<MeshCollider>();
-			meshRenderer.material = material;
-
-			meshObject.transform.position = positionV3 * scale;
-			meshObject.transform.parent = parent;
-			meshObject.transform.localScale = Vector3.one * scale;
-			SetVisible(false);
+			objectIsCreated = false;
 
 			lodMeshes = new LODMesh[detailLevels.Length];
 			for (int i = 0; i < detailLevels.Length; i++) {
@@ -126,25 +129,23 @@ public class EndlessTerrain : MonoBehaviour {
 			this.mapData = mapData;
 			mapDataReceived = true;
 
-			Texture2D texture = TextureGenerator.TextureFromColourMap (mapData.colourMap, MapGenerator.mapChunkSize, MapGenerator.mapChunkSize);
-			meshRenderer.material.mainTexture = texture;
-
-			//Creating the Cave Entrance -- Mariz
-
 			int width = mapData.heightMap.GetLength (0);
 			int height = mapData.heightMap.GetLength (1);
 
+			float seedGenerator = 0;
+
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) {
+					seedGenerator += mapData.heightMap[x,y];
 					if(mapData.heightMap[x,y] > highPointQuote && !hasCave)
 					{
-						caveEntrance = new CaveEntrance(position, meshObject.GetComponent<Transform>());
 						hasCave = true;
+						//caveSeed = mapData.heightMap[x,y];
 					}
 				}
 			}
 
-			//Final -- Mariz
+			caveSeed = (int)Mathf.Abs(seedGenerator - 39000f);
 
 			UpdateTerrainChunk ();
 		}
@@ -155,6 +156,9 @@ public class EndlessTerrain : MonoBehaviour {
 			if (mapDataReceived) {
 				float viewerDstFromNearestEdge = Mathf.Sqrt (bounds.SqrDistance (viewerPosition));
 				bool visible = viewerDstFromNearestEdge <= maxViewDst;
+				bool renderDungeon = viewerDstFromNearestEdge <= maxViewDst / 2;
+
+				SetVisible (visible, renderDungeon);
 
 				if (visible) {
 					int lodIndex = 0;
@@ -167,11 +171,11 @@ public class EndlessTerrain : MonoBehaviour {
 						}
 					}
 
-					if (lodIndex != previousLODIndex) {
+					if (lodIndex != previousLODIndex || objectIsCreated) {
 						LODMesh lodMesh = lodMeshes [lodIndex];
 						if (lodMesh.hasMesh) {
 							previousLODIndex = lodIndex;
-							meshFilter.mesh = lodMesh.mesh;
+							meshFilter.mesh = lodMesh.mesh; /////
 						} else if (!lodMesh.hasRequestedMesh) {
 							lodMesh.RequestMesh (mapData);
 						}
@@ -179,7 +183,7 @@ public class EndlessTerrain : MonoBehaviour {
 
 					if (lodIndex == 0) {
 						if (collisionLODMesh.hasMesh) {
-							meshCollider.sharedMesh = collisionLODMesh.mesh;
+							meshCollider.sharedMesh = collisionLODMesh.mesh; /////
 						} else if (!collisionLODMesh.hasRequestedMesh) {
 							collisionLODMesh.RequestMesh (mapData);
 						}
@@ -187,48 +191,104 @@ public class EndlessTerrain : MonoBehaviour {
 
 					terrainChunksVisibleLastUpdate.Add (this);
 				}
-
-				
-
-				SetVisible (visible);
 			}
 		}
 
-		public void SetVisible(bool visible) {
-			meshObject.SetActive (visible);
-		}
+		public void SetVisible(bool visible, bool renderDungeon) {
+			if(visible && !objectIsCreated)
+			{
+				meshObject = new GameObject("Terrain Chunk " + position);
+				meshRenderer = meshObject.AddComponent<MeshRenderer>();
+				meshFilter = meshObject.AddComponent<MeshFilter>();
+				meshCollider = meshObject.AddComponent<MeshCollider>();
+				meshRenderer.material = material;
 
-		public bool IsVisible() {
-			return meshObject.activeSelf;
-		}
+				meshObject.transform.position = positionV3 * scale;
+				meshObject.transform.parent = parent;
+				meshObject.transform.localScale = Vector3.one * scale;
 
+				Texture2D texture = TextureGenerator.TextureFromColourMap (mapData.colourMap, MapGenerator.mapChunkSize, MapGenerator.mapChunkSize);
+				meshRenderer.material.mainTexture = texture;
+
+				int layer = LayerMask.NameToLayer("TerrainTest");
+				meshObject.layer = layer;
+
+				if(hasCave && renderDungeon)
+				{
+					dungeon = new Dungeon(position, meshObject.GetComponent<Transform>(), caveSeed);
+					caveEntrance = new CaveEntrance(position, meshObject.GetComponent<Transform>(), dungeon.resources[0].transform.position);
+				}
+
+				objectIsCreated = true;
+			}
+			else if(!visible && objectIsCreated)
+			{
+				Destroy(meshObject);
+				objectIsCreated = false;
+			}
+		}
 	}
 
 	public class CaveEntrance {
 
 		GameObject meshObject;
-		CylinderGenerator cylinderGenerator = new CylinderGenerator();
-		MeshRenderer meshRenderer;
-		MeshFilter meshFilter;
-		MeshCollider meshCollider;
-		public CaveEntrance(Vector2 position, Transform parent) {
-			Vector3 positionV3 = new Vector3(position.x,0,position.y);
+		// CylinderGenerator cylinderGenerator;// = new CylinderGenerator();
+		// MeshRenderer meshRenderer;
+		// MeshFilter meshFilter;
+		// MeshCollider meshCollider;
+		public CaveEntrance(Vector2 position, Transform parent, Vector3 portalPosition) {
+			Vector3 positionV3 = new Vector3(position.x,90,position.y);
 
-			meshObject = new GameObject("Dungeon Portal");
-			meshRenderer = meshObject.AddComponent<MeshRenderer>();
-			meshFilter = meshObject.AddComponent<MeshFilter>();
-			meshCollider = meshObject.AddComponent<MeshCollider>();
-			meshObject.AddComponent<PortalInteractable>();
-			// meshRenderer.material = material;
+			// meshObject = new GameObject("Dungeon Portal");
+			// meshRenderer = meshObject.AddComponent<MeshRenderer>();
+			// meshFilter = meshObject.AddComponent<MeshFilter>();
+			// meshCollider = meshObject.AddComponent<MeshCollider>();
+			// meshObject.AddComponent<PortalInteractable>();
+			// // meshRenderer.material = material;
 
-			Mesh cylinderMesh = cylinderGenerator.GenerateCylinder(meshFilter);
-			meshFilter.mesh = cylinderMesh;
-			meshCollider.sharedMesh = cylinderMesh;
+			// cylinderGenerator = meshObject.AddComponent<CylinderGenerator>();
+			// Mesh cylinderMesh = cylinderGenerator.GenerateCylinder();
+			// meshFilter.mesh = cylinderMesh;
+			// meshCollider.sharedMesh = cylinderMesh;
+			// meshCollider.convex = true;
+			// meshCollider.isTrigger = true;
 
-			meshObject.transform.position = positionV3 * scale;
-			meshObject.transform.rotation = new Quaternion(-0.707106829f,0,0,0.707106829f);
-			meshObject.transform.parent = parent;
-			meshObject.transform.localScale = Vector3.one * scale;
+			// meshObject.transform.position = positionV3 * scale;
+			// meshObject.transform.rotation = new Quaternion(-0.707106829f,0,0,0.707106829f);
+			// meshObject.transform.parent = parent;
+			// meshObject.transform.localScale = Vector3.one * scale;
+
+			meshObject = (GameObject)Instantiate(Resources.Load("Prefabs/DungeonPortal"), positionV3 * scale, new Quaternion(0,0,0,0), parent);
+			meshObject.GetComponent<PortalInteractable>().teleportPosition = new Vector3(portalPosition.x, -40, portalPosition.z);
+		}
+	}
+
+	public class Dungeon {
+
+		GameObject meshObject;
+		bool hasResources;
+		public List<GameObject> resources;
+
+		public Dungeon(Vector2 position, Transform parent, float _caveSeed) {
+			Vector3 positionV3 = new Vector3(position.x,-50,position.y);
+			hasResources = false;
+
+			meshObject = (GameObject)Instantiate(Resources.Load("Prefabs/CaveGenerator"), positionV3 * scale, new Quaternion(0,0,0,0), parent);
+
+			meshObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+			meshObject.GetComponent<CaveMapGenerator>().seed = _caveSeed.ToString();
+			meshObject.GetComponent<CaveMapGenerator>().CreateDungeon();
+
+			if(!hasResources)
+			{
+				resources = meshObject.GetComponent<DungeonResources>().GetResources(positionV3);
+				hasResources = true;
+			}
+			else
+			{
+				meshObject.GetComponent<DungeonResources>().SetResources(resources);
+			}
+			
 		}
 	}
 
